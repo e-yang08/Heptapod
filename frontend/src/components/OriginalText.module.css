@@ -1,0 +1,31 @@
+.copyIconWrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+}
+
+
+.copyIcon {
+    font-size: x-large;
+    transition: transform 0.05s;
+}
+
+.copyIcon:active {
+    transform: scale(0.9);
+    /* font-size: large; */
+}
+
+.translateButton {
+    font-size: 15px;
+    width: 100px;
+    height: min-content;
+    white-space: nowrap;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.toolBar {
+    margin-top: 10px;
+}

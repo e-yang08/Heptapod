@@ -1,0 +1,87 @@
+.FRoot {
+    background-color: var(--absolutewhite);
+    width: 100%;
+    height: min-content;
+    padding: 20px 30px;
+    border-top: solid var(--grey-75);
+    font-size: 14px;
+    /* position: sticky;
+    bottom: 0; */
+}
+
+.Footer {
+    align-items: top;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 50px;
+}
+
+.subContainer {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.textButton {
+    font-weight: 700;
+    height: 21px;
+    align-self: flex-start;
+    /* Align the text at the start */
+}
+
+.TitleLetter {
+    font-family: "PT Sans", sans-serif;
+    letter-spacing: 3px;
+    font-weight: lighter;
+}
+
+.OLetter {
+    font-family: "Poppins", sans-serif;
+
+}
+
+.listItem {
+    text-align: left;
+}
+
+.LastLine {
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.Credentials {
+    align-items: center;
+    display: inline-flex;
+    gap: 10px;
+    justify-content: center;
+    font-weight: 300;
+}
+
+
+.SnsLogos {
+    align-items: flex-start;
+    display: inline-flex;
+    gap: 8px;
+}
+
+.IconWrapper {
+    background-color: var(--grey-35);
+    border-radius: 40px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+}
+
+.iconImg {
+    object-fit: cover;
+    color: var(--websitename);
+}

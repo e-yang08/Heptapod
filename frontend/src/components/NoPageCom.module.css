@@ -1,0 +1,35 @@
+.noPageRoot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.titleLetter {
+    font-size: x-large;
+}
+
+
+.imageContainer {
+    display: flex;
+    align-items: center;
+    /* Center vertically */
+    justify-content: center;
+    /* Center horizontally */
+    max-width: 100%;
+    /* Optional: Adjust the maximum width of the image container */
+}
+
+.image {
+    max-width: 70%;
+    /* Ensure the image doesn't exceed the container */
+    height: auto;
+    /* Maintain aspect ratio */
+}
