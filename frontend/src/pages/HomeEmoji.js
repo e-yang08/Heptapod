@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
 import classes from "./Home.module.css";
-import { Link } from "react-router-dom";
 import OriginalText from "../components/OrigintalText";
 import TranslatedText from "../components/TranslatedText";
 import { useText } from "../textContext";
 
 const HomeEmoji = () => {
-  const { translatedText, emojiText, setEmojiText } = useText();
+  const { emojiText } = useText();
 
   return (
     <div className={classes.homeRoot}>
