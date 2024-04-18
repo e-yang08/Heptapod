@@ -88,9 +88,9 @@ const EmojifiedText = () => {
       <div>
         <textarea
           id="emojiResult"
-          className={`form-control ${classes.emojiTextarea}`}
+          className={`form-control`}
           type="text"
-          // contentEditable="true"
+          contentEditable={emojiText ? "true" : "false"}
           value={modifiedEmojiText || emojiText}
           onChange={handleEmojiChange}
           placeholder="Emojified text will appear here (you can modify if needed)"
