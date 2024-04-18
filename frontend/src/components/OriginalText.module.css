@@ -18,12 +18,13 @@
 }
 
 .translateButton {
-    font-size: 15px;
+    font-size: medium;
     width: 100px;
     height: min-content;
     white-space: nowrap;
     border-radius: 15px;
     text-align: center;
+    border: 0;
 }
 
 .toolBar {

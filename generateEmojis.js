@@ -1,6 +1,4 @@
 const axios = require("axios");
-const fs = require("fs");
-const path = require("path");
 require("dotenv").config();
 
 const generateEmojis = async (text) => {
@@ -23,29 +21,9 @@ const generateEmojis = async (text) => {
     },
   };
 
-  // Write items to a JSON file
-  const dirPath = path.join(
-    __dirname,
-    ".",
-    "frontend",
-    "public",
-    "visualTranslation"
-  );
-
-  // if there is no existing directory, create one
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath);
-  }
-  // how to check if there is any other event listeners? and
-
   try {
     const response = await axios.request(options);
     const { openai } = response.data;
-
-    fs.writeFileSync(
-      path.join(dirPath, "hi.json"),
-      JSON.stringify(openai, null, 2)
-    );
     return openai;
   } catch (error) {
     console.error("Error generating emojis:", error.message);

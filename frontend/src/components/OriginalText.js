@@ -2,9 +2,11 @@ import { useState } from "react";
 import classes from "./OriginalText.module.css";
 import axios from "axios";
 import { useText } from "../textContext";
+import deeplLanguageMapping from "../deeplLangMapping.json";
+import googleLangMapping from "../googleLangMapping.json";
 
 const OriginalText = () => {
-  const { setTranslatedText } = useText();
+  const { setTranslatedText, setSourceLang } = useText();
 
   const [inputText, setInputText] = useState("");
 
@@ -31,7 +33,13 @@ const OriginalText = () => {
       });
   };
 
-  const handleTranslate = async (event) => {
+  const handleTranslate = async () => {
+    // Check if input text is empty
+    if (!inputText.trim()) {
+      alert("Please enter text to translate.");
+      return;
+    }
+
     const numSentences = countSentences(inputText);
     if (numSentences > 2) {
       alert(
@@ -39,10 +47,32 @@ const OriginalText = () => {
       );
       return;
     }
-    const response = await axios.post("http://localhost:3001/translate", {
-      text: inputText,
-    });
-    setTranslatedText(response.data.translation);
+
+    try {
+      const response = await axios.post("http://localhost:3001/translate", {
+        text: inputText,
+      });
+
+      if (response.data.error) {
+        // Handle translation error
+        console.error("Translation error:", response.data.error);
+      } else {
+        // Update state
+        setTranslatedText(response.data.translation.translation);
+
+        const sourceLCode = response.data.translation.sourceLanguage;
+        const isDeepL = response.data.translation.deepL;
+
+        // map source language
+        if (isDeepL) {
+          setSourceLang(deeplLanguageMapping[sourceLCode]);
+        } else {
+          setSourceLang(googleLangMapping[sourceLCode]);
+        }
+      }
+    } catch (error) {
+      console.error("Error translating text:", error);
+    }
   };
 
   return (
@@ -71,7 +101,7 @@ const OriginalText = () => {
           />
         </button>
         <button
-          className={`btn btn-dark ${classes.translateButton}`} // ${classes.signInButton}
+          className={`btn btn-light ${classes.translateButton}`} // ${classes.signInButton}
           onClick={handleTranslate}
         >
           Translate

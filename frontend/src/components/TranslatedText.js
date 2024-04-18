@@ -6,19 +6,23 @@ import { useText } from "../textContext";
 
 const TranslatedText = () => {
   const navigate = useNavigate();
-  const { translatedText, emojiText, setEmojiText } = useText();
+  const {
+    translatedText,
+    setEmojiText,
+    modifiedTranslation,
+    setModifiedTranslation,
+  } = useText();
 
-  const [modifiedTranslation, setModifiedTranslation] = useState("");
-  const [showRevertButton, setShowRevertButton] = useState(false);
+  const [showLangRevertButton, setShowLangRevertButton] = useState(false);
 
   const handleInputChange = (event) => {
     const modifiedText = event.target.value;
-    setShowRevertButton(true);
+    setShowLangRevertButton(translatedText !== modifiedText);
     setModifiedTranslation(modifiedText);
   };
 
   const handleRevertTranslation = () => {
-    setShowRevertButton(false); // Hide the revert button again
+    setShowLangRevertButton(false); // Hide the revert button again
     setModifiedTranslation(""); // Clear modified translation
   };
 
@@ -43,6 +47,12 @@ const TranslatedText = () => {
   };
 
   const handleEmojiGen = async () => {
+    // Check if input text is empty
+    if (!modifiedTranslation.trim() & !translatedText.trim()) {
+      alert("Please enter english sentence to emojify.");
+      return;
+    }
+
     const numSentences = countSentences(modifiedTranslation || translatedText);
     if (numSentences > 2) {
       alert(
@@ -56,8 +66,13 @@ const TranslatedText = () => {
 
     console.log("reponse created", response.data.generated_text);
 
-    setEmojiText(response.data.generated_text);
-
+    const emojiRegex =
+      /[\u{1F300}-\u{1F5FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}]/gu;
+    const emojiMatches = response.data.generated_text
+      .replace(/\n/g, "")
+      .match(emojiRegex);
+    const emojiOnlyText = emojiMatches ? emojiMatches.join("") : "";
+    setEmojiText(emojiOnlyText);
     const translationId =
       Date.now() + (modifiedTranslation || translatedText).substring(0, 4);
 
@@ -67,11 +82,11 @@ const TranslatedText = () => {
   return (
     <div>
       <textarea
-        className={`form-control`}
+        className={`form-control ${classes.translationTextarea}`}
         type="text"
         value={modifiedTranslation || translatedText}
         onChange={handleInputChange}
-        placeholder="Translated text will appear here (modify if needed)"
+        placeholder="Translated text will appear here (editable text)"
       />
       <div
         className={`btn-toolbar justify-content-between ${classes.toolBar}`}
@@ -88,7 +103,7 @@ const TranslatedText = () => {
           >
             <i className={`bi bi-copy ${classes.copyIcon}`} />
           </button>
-          {showRevertButton && (
+          {showLangRevertButton && (
             <button
               className={`btn ${classes.iconWrapper}`}
               data-bs-toggle="tooltip"
@@ -96,19 +111,20 @@ const TranslatedText = () => {
               title="Revert to initial translation"
               onClick={handleRevertTranslation}
             >
-              <i className={`bi bi-rewind-circle ${classes.copyIcon}`} />
+              <i
+                className={`bi bi-arrow-counterclockwise ${classes.copyIcon}`}
+              />
             </button>
           )}
         </div>
+        <button
+          className={`btn btn-dark ${classes.generateButton}`}
+          onClick={handleEmojiGen}
+          type="button"
+        >
+          Emojify
+        </button>
       </div>
-      <button
-        className={`btn btn-dark ${classes.generateButton}`}
-        onClick={handleEmojiGen}
-        type="button"
-      >
-        Generate Emojis
-      </button>
-      <div>{emojiText}</div>
     </div>
   );
 };
