@@ -22,10 +22,14 @@
     color: var(--websitename);
 }
 
-.logoLetter {
-    font-family: Syncopate, sans-serif;
-    color: var(--websitename);
-    font-weight: bold;
+.TitleLetter {
+    font-family: "PT Sans", sans-serif;
+    letter-spacing: 3px;
+    font-weight: light;
+}
+
+.OLetter {
+    font-family: "Poppins", sans-serif;
 }
 
 .highlightLetter {

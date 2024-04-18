@@ -6,10 +6,6 @@
     border: 0;
 }
 
-.emojiTextarea {
-    border-color: var(--websitebutton);
-}
-
 
 .copyIcon {
     font-size: x-large;
