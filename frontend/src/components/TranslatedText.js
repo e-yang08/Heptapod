@@ -76,7 +76,7 @@ const TranslatedText = () => {
     const translationId =
       Date.now() + (modifiedTranslation || translatedText).substring(0, 4);
 
-    navigate(`/${translationId}`);
+    navigate(`/translation/${translationId}`);
   };
 
   return (

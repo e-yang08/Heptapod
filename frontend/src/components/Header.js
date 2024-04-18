@@ -70,7 +70,7 @@ const Header = () => {
               type="button"
             >
               <div className={classes.draftLetterWrapper}>
-                <i className={`bi bi-info-square ${classes.draftIcon}`} />
+                <i className={`bi bi-info-square ${classes.infoIcon}`} />
               </div>
             </button>
           </div>

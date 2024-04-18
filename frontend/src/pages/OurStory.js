@@ -12,12 +12,16 @@ const OurStory = () => {
         </div>
         <div className={classes.secondLine}>
           <div>
-            We integrate "emoji" as our universal language to prevent
-            undesirable consequences due to machine-based translation.
+            We integrate{" "}
+            <span className={classes.highlightLetter}>emoji 😊</span> as our
+            universal language to prevent undesirable consequences due to
+            machine-based translation.
           </div>
           For the detail of our story, please access{" "}
           <Link to="https://docs.google.com/document/d/1RXqwjN8U2TGEDKp39PnFIfsxBHOqCLA58zWlA5m4bnI/edit?usp=sharing">
-            <span className={classes.highlightLetter}>here</span>
+            <span className={`${classes.highlightLetter} ${classes.webLink}`}>
+              here
+            </span>
           </Link>
         </div>
       </div>

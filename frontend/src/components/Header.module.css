@@ -82,9 +82,10 @@
 }
 
 
-.draftIcon {
-    font-size: x-large;
+.infoIcon {
+    font-size: xx-large;
     height: fit-content;
+    color: var(--websitehighlight)
 }
 
 

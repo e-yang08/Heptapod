@@ -90,10 +90,10 @@ const EmojifiedText = () => {
           id="emojiResult"
           className={`form-control`}
           type="text"
-          contentEditable={emojiText ? "true" : "false"}
           value={modifiedEmojiText || emojiText}
           onChange={handleEmojiChange}
           placeholder="Emojified text will appear here (you can modify if needed)"
+          disabled={!emojiText}
         />
         <div
           className={`btn-toolbar justify-content-between ${classes.toolBar}`}
@@ -107,6 +107,7 @@ const EmojifiedText = () => {
               data-bs-placement="bottom"
               title="Copy"
               onClick={handleCopyToClipboard}
+              disabled={!emojiText}
             >
               <i className={`bi bi-copy ${classes.copyIcon}`} />
             </button>
@@ -132,6 +133,7 @@ const EmojifiedText = () => {
             data-bs-placement="bottom"
             title="Emoji Keyboard"
             type="button"
+            disabled={!emojiText}
           >
             ☺😊
           </button>
