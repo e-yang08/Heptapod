@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
-import HomeEmoji from "./pages/HomeEmoji";
 import Help from "./pages/Help";
+import Contact from "./pages/Contact";
+import OurStory from "./pages/OurStory";
 import NoPage from "./pages/NoPage";
 
 const router = createBrowserRouter([
@@ -14,11 +15,19 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       {
         path: ":translationId",
-        element: <HomeEmoji />,
+        element: <Home />,
       },
       {
         path: "help",
         element: <Help />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "our-story",
+        element: <OurStory />,
       },
     ],
   },

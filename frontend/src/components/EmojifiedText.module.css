@@ -6,10 +6,10 @@
     border: 0;
 }
 
-/* 
-.translationTextarea {
-    border-color: var(--grey-35);
-} */
+.emojiTextarea {
+    border-color: var(--websitebutton);
+}
+
 
 .copyIcon {
     font-size: x-large;
@@ -31,18 +31,21 @@
     text-align: center;
 }
 
-.generateButton {
+.emojiButton {
     font-size: medium;
-    width: 100px;
     height: min-content;
+    /* width: height; */
     white-space: nowrap;
-    border-radius: 15px;
+    border-radius: 50px;
     text-align: center;
 }
 
-.generateButton:hover {
-    background-image: url("../assets/emojifyAnimation.gif");
-    background-size: 400%;
+.emojiPicker {
+    height: min-content;
+    width: min-content;
+    /* display: absolute !important;
+    top: 10px !important;
+    left: 20px !important; */
 }
 
 .toolBar {

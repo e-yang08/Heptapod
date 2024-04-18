@@ -25,12 +25,25 @@
     }
 }
 
+.modalHeaderTitle {
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+}
+
+.TitleLetter {
+    font-family: "PT Sans", sans-serif;
+    letter-spacing: 3px;
+    font-weight: 400;
+}
+
+.OLetter {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
 .HeaderLeft {
-    /* width: min-content; */
     height: 100%;
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
     gap: 20px;
 }
 
@@ -81,50 +94,12 @@
     align-items: center;
 }
 
-.draftLetter {
-    font-size: medium;
-    white-space: nowrap;
-    width: 100px;
-}
-
-.userIconWrap {
-    padding: 2px;
-    border-radius: 45px;
-    outline: none;
-}
 
 /* .userIconWrap:active {
   padding: 2px;
   border-radius: 45px;
   border-color: var(--websitelight-background);
 } */
-
-.userIconImg {
-    height: 40px;
-    width: 40px;
-    object-fit: cover;
-    border-radius: 46px;
-    outline: 1px solid var(--grey-35);
-    outline-offset: 3px;
-}
-
-.dropdownMenu {
-    margin-top: 5px;
-    padding: 10px;
-    /* transform: translate3d(0px, 65px, 0px); */
-}
-
-.dropdownItem {
-    width: 160px;
-}
-
-.dropdownItem:hover {
-    background-color: transparent;
-}
-
-.dropdownHeader {
-    padding: 0px 5px;
-}
 
 .HeaderRightButton {
     width: min-content;
@@ -133,43 +108,6 @@
     align-items: center;
     gap: 10px;
     display: flex;
-}
-
-.signinButton {
-    width: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-    font-size: 15px;
-    border-radius: 20px;
-}
-
-
-.signupButton {
-    font-size: 15px;
-    width: 120px;
-    height: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-    border-radius: 20px;
-    box-shadow: 2px 2px 3px 0px #00000030;
-}
-
-.modalDialogCus {
-    justify-content: center;
-}
-
-
-.modalHeaderCus {
-    border-bottom-width: 0px;
-}
-
-.modalContentCus {
-    max-width: fit-content;
-    background-color: var(--websitelight-background);
-}
-
-.signInCard {
-    padding: 20px 10px 0px 10px;
 }
 
 .SpaceHolder {

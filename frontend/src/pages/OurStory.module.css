@@ -1,4 +1,4 @@
-.noPageRoot {
+.pageRoot {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,20 +7,47 @@
 }
 
 .header {
-    display: flex;
     width: 100%;
     padding: 0 20px;
+}
+
+.titleWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.iconImg {
+    object-fit: cover;
+    color: var(--websitename);
+}
+
+.logoLetter {
+    font-family: Syncopate, sans-serif;
+    color: var(--websitename);
+    font-weight: bold;
+}
+
+.highlightLetter {
+    color: var(--variable-collection-smokey-pink);
+    font-family: Syncopate, sans-serif;
+    font-weight: 700;
 }
 
 .titleLetter {
     font-size: x-large;
 }
 
+.secondLine {
+    margin-left: 30px;
+}
 
 .imageContainer {
     display: flex;
     align-items: center;
+    /* Center vertically */
     justify-content: center;
+    /* Center horizontally */
     max-width: 100%;
     /* Optional: Adjust the maximum width of the image container */
 }

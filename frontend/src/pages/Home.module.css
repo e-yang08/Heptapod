@@ -2,75 +2,80 @@
     position: relative;
 }
 
-.topPic {
+/* .topPic {
     width: 100%;
     height: 580px;
     object-fit: cover;
+} */
+
+.modalHeaderTitle {
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
 }
 
-.trendsWrapper {
+
+.mainWrapper {
     margin: 30px;
     margin-top: 20px;
     display: flex;
+    justify-content: space-between;
+    gap: auto;
 }
 
 .titleWrapper {
     display: flex;
-    align-self: left;
-    font-size: larger;
+    justify-content: space-between;
+    align-items: center;
+    gap: auto;
     padding: 5px;
 }
 
-.iconImg {
-    height: 36px;
-    width: 36px;
-    object-fit: cover;
+.titleLetter {
+    align-self: left;
+    font-size: larger;
 }
 
-
-.highlightLetter {
-    color: var(--variable-collection-smokey-pink);
-    font-family: Syncopate, sans-serif;
-    font-weight: 700;
-}
-
-.projectCardWrapper {
+.detectedLangWrapper {
     display: flex;
-    width: 100%;
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* align-content: center; */
-    gap: 30px auto;
-    flex-wrap: wrap;
+    align-items: center;
 }
+
+.detectedLang {
+    font-size: small;
+}
+
+.arrowIcon {
+    font-size: x-large;
+    height: 12px;
+}
+
+.toRightIcon {
+    margin-top: 60px;
+}
+
+
+.toDownIcon {
+    display: flex;
+    justify-content: center;
+}
+
+
+.iconWrapper {
+    font-size: medium;
+    height: fit-content;
+    margin-left: 3px;
+}
+
 
 .bottomWrapper {
     float: right;
 }
 
-.hyperlinkLetter {
-    font-size: medium;
-}
-
-.hyperlinkLetter:focus,
-.hyperlinkLetter:hover {
-    text-decoration: underline;
-}
-
 .originalText {
-    width: 50%;
+    width: 48%;
     padding: 10px;
     box-sizing: border-box;
     /* border: 1px solid var(--grey-75); */
     border-radius: 5px;
     resize: none;
-}
-
-.discoverProjects {
-    width: 50%;
-}
-
-.topicsListWrapper {
-    margin-left: 30px;
-    width: 350px;
 }
