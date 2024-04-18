@@ -1,17 +1,10 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/logoNoname.svg";
 import logoletter from "../assets/logoLetter.svg";
 import classes from "./Header.module.css";
 
 const Header = () => {
   // context variable
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-
-  // state variables
-  const [searchQuery, setSearchQuery] = useState("");
-
   return (
     <header>
       <div className={classes.HRoot}>
