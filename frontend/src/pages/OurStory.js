@@ -18,7 +18,7 @@ const OurStory = () => {
             machine-based translation.
           </div>
           For the detail of our story, please access{" "}
-          <Link to="https://docs.google.com/document/d/1RXqwjN8U2TGEDKp39PnFIfsxBHOqCLA58zWlA5m4bnI/edit?usp=sharing">
+          <Link to="https://docs.google.com/document/d/1Vtw_J2Fp7qCrEbZU0KtAPXNWVHrxGeGLjEaj2c7oQ8M/edit?usp=sharing">
             <span className={`${classes.highlightLetter} ${classes.webLink}`}>
               here
             </span>

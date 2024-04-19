@@ -9,7 +9,6 @@ const translateText = async (text) => {
   // Translate using deepl-node
   try {
     const googleTranslator = new Translate({ projectId });
-    // const texTt = "Hello, world!";
     let [googleDetections] = await googleTranslator.detect(text);
     console.log(googleDetections.language);
     const isSupportedByDeepL = languageMapping.hasOwnProperty(
