@@ -60,6 +60,7 @@ const Home = () => {
               <div className={classes.titleLetter}>English Text</div>
             </div>
             <TranslatedText />
+
             <i
               className={`bi bi-caret-down-fill ${classes.arrowIcon} ${classes.toDownIcon}`}
             />
