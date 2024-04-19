@@ -1,18 +1,24 @@
-import { useState } from "react";
 import classes from "./OriginalText.module.css";
 import axios from "axios";
+import { useState } from "react";
 import { useText } from "../textContext";
 import deeplLanguageMapping from "../deeplLangMapping.json";
 import googleLangMapping from "../googleLangMapping.json";
 
 const OriginalText = () => {
-  const { setTranslatedText, setSourceLang } = useText();
+  const {
+    inputText,
+    setInputText,
+    setTranslatedText,
+    setModifiedTranslation,
+    setSourceLang,
+  } = useText();
 
-  const [inputText, setInputText] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const countSentences = (text) => {
     // Split the text into sentences using period, exclamation mark, and question mark as delimiters
-    const sentences = text.split(/[.!?？。！]+/);
+    const sentences = text.split(/[.!?？。！]+/).filter(Boolean);
     return sentences.length;
   };
 
@@ -34,31 +40,32 @@ const OriginalText = () => {
   };
 
   const handleTranslate = async () => {
-    // Check if input text is empty
-    if (!inputText.trim()) {
-      alert("Please enter text to translate.");
-      return;
-    }
-
-    const numSentences = countSentences(inputText);
-    if (numSentences > 2) {
-      alert(
-        "⚠️ Users can translate up to 2 sentences.\n Please kindly modify your text ✒️"
-      );
-      return;
-    }
+    setLoading(true);
 
     try {
+      // Check if input text is empty
+      if (!inputText.trim()) {
+        throw new Error("Please enter text to translate.");
+      }
+
+      const numSentences = countSentences(inputText);
+      if (numSentences > 2) {
+        throw new Error(
+          "⚠️ Users can translate up to 2 sentences.\n Please kindly modify your text ✒️"
+        );
+      }
+
       const response = await axios.post("http://localhost:3001/translate", {
         text: inputText,
       });
 
       if (response.data.error) {
         // Handle translation error
-        console.error("Translation error:", response.data.error);
+        throw new Error("Translation error:", response.data.error);
       } else {
         // Update state
         setTranslatedText(response.data.translation.translation);
+        setModifiedTranslation(response.data.translation.translation);
 
         const sourceLCode = response.data.translation.sourceLanguage;
         const isDeepL = response.data.translation.deepL;
@@ -71,7 +78,10 @@ const OriginalText = () => {
         }
       }
     } catch (error) {
-      console.error("Error translating text:", error);
+      console.error("Error translating text:", error.message);
+      alert(`${error.message} Please try again.`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -103,8 +113,18 @@ const OriginalText = () => {
         <button
           className={`btn btn-light ${classes.translateButton}`} // ${classes.signInButton}
           onClick={handleTranslate}
+          type="button"
         >
-          Translate
+          {loading ? (
+            <>
+              <span
+                className={`spinner-border spinner-border-sm `} // ${classes.arrowIcon} ${classes.toDownIcon}
+                aria-hidden="true"
+              ></span>
+            </>
+          ) : (
+            "Translate"
+          )}
         </button>
       </div>
     </div>

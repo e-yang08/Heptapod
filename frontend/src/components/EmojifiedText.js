@@ -62,8 +62,9 @@ const EmojifiedText = () => {
 
   const handleEmojiChange = async (event) => {
     const emojiRegex =
-      /[\u{1F300}-\u{1F5FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}]/gu;
+      /[\p{Extended_Pictographic}.?!, \n](?:[\u{200D}\u{FE0F}][\p{Extended_Pictographic}])*/gu;
     const emojiMatches = event.target.value.match(emojiRegex);
+    console.log(emojiMatches);
     const emojiOnlyText = emojiMatches ? emojiMatches.join("") : "";
     setModifiedEmojiText(emojiOnlyText);
     setShowEmojiRevertButton(emojiOnlyText !== emojiText);
@@ -90,10 +91,10 @@ const EmojifiedText = () => {
           id="emojiResult"
           className={`form-control`}
           type="text"
-          contentEditable={emojiText ? "true" : "false"}
           value={modifiedEmojiText || emojiText}
           onChange={handleEmojiChange}
           placeholder="Emojified text will appear here (you can modify if needed)"
+          disabled={!emojiText}
         />
         <div
           className={`btn-toolbar justify-content-between ${classes.toolBar}`}
@@ -107,6 +108,7 @@ const EmojifiedText = () => {
               data-bs-placement="bottom"
               title="Copy"
               onClick={handleCopyToClipboard}
+              disabled={!emojiText}
             >
               <i className={`bi bi-copy ${classes.copyIcon}`} />
             </button>
@@ -132,6 +134,7 @@ const EmojifiedText = () => {
             data-bs-placement="bottom"
             title="Emoji Keyboard"
             type="button"
+            disabled={!emojiText}
           >
             ☺😊
           </button>

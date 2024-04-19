@@ -3,6 +3,31 @@ require("dotenv").config();
 
 const generateEmojis = async (text) => {
   const apiKey = process.env.EDENAI_API_KEY;
+  const promptInput1 = process.env.PROMPT_INPUT1;
+  const promptInput2 = process.env.PROMPT_INPUT2 || "";
+  const promptInput3 = process.env.PROMPT_INPUT3 || "";
+
+  const sentences = text.split(/[.!?？。！]+/);
+  // Remove the last element if it's an empty string
+  if (sentences[sentences.length - 1] === "") {
+    sentences.pop();
+  }
+
+  const sentenceLen = sentences.length;
+
+  let inputText = "";
+
+  // Iterate through each sentence in the text
+  sentences.forEach((sentence, index) => {
+    inputText += `${index + 1}. `;
+    inputText += `"${sentence}"`;
+    inputText += "\n";
+  });
+
+  const formattedText = `${promptInput1}${
+    sentenceLen === 1 ? " a list" : ` ${sentenceLen} lists`
+  }${promptInput2}${inputText}${promptInput3}`;
+
   // Translate using deepl-node
   const options = {
     method: "POST",
@@ -14,9 +39,9 @@ const generateEmojis = async (text) => {
     },
     data: {
       providers: "openai",
-      text: `write a sentence of emoji that means ${text}.`,
+      text: formattedText,
       temperature: 0.2,
-      max_tokens: 250,
+      max_tokens: 200,
       fallback_providers: "",
     },
   };

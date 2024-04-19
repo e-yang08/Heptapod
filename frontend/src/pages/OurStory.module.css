@@ -32,18 +32,24 @@
     font-family: "Poppins", sans-serif;
 }
 
-.highlightLetter {
-    color: var(--variable-collection-smokey-pink);
-    font-family: Syncopate, sans-serif;
-    font-weight: 700;
-}
 
 .titleLetter {
     font-size: x-large;
 }
 
 .secondLine {
+    margin-top: 10px;
     margin-left: 30px;
+}
+
+.highlightLetter {
+    color: var(--websitehighlight);
+    font-family: "Poppins", sans-serif;
+    font-weight: bolder;
+}
+
+.webLink {
+    text-decoration: underline;
 }
 
 .imageContainer {

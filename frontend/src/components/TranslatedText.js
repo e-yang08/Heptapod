@@ -9,10 +9,12 @@ const TranslatedText = () => {
   const {
     translatedText,
     setEmojiText,
+    setModifiedEmojiText,
     modifiedTranslation,
     setModifiedTranslation,
   } = useText();
 
+  const [loading, setLoading] = useState(false);
   const [showLangRevertButton, setShowLangRevertButton] = useState(false);
 
   const handleInputChange = (event) => {
@@ -42,41 +44,64 @@ const TranslatedText = () => {
 
   const countSentences = (text) => {
     // Split the text into sentences using period, exclamation mark, and question mark as delimiters
-    const sentences = text.split(/[.!?？。！]+/);
+    const sentences = text.split(/[.!?？。！]+/).filter(Boolean);
     return sentences.length;
   };
 
   const handleEmojiGen = async () => {
-    // Check if input text is empty
-    if (!modifiedTranslation.trim() & !translatedText.trim()) {
-      alert("Please enter english sentence to emojify.");
-      return;
-    }
+    setLoading(true);
 
-    const numSentences = countSentences(modifiedTranslation || translatedText);
-    if (numSentences > 2) {
-      alert(
-        "⚠️ Users can translate up to 2 sentences.\n Please kindly modify your text ✒️"
+    try {
+      // Check if input text is empty
+      if (!modifiedTranslation.trim() && !translatedText.trim()) {
+        throw new Error("Please enter an English sentence to emojify.");
+      }
+
+      const numSentences = countSentences(
+        modifiedTranslation || translatedText
       );
-      return;
+      if (numSentences > 2) {
+        throw new Error(
+          "⚠️ Users can translate up to 2 sentences. \nPlease kindly modify your text. ✒️"
+        );
+      }
+
+      const response = await axios.post(
+        "http://localhost:3001/generate-emoji",
+        {
+          text: modifiedTranslation || translatedText,
+        }
+      );
+
+      console.log("response created", response.data.generated_text);
+
+      const emojiRegex =
+        /[\p{Extended_Pictographic}.?!, ](?:[\u{200D}\u{FE0F}][\p{Extended_Pictographic}])*/gu;
+      const generatedText = response.data.generated_text.replace(/\n/g, "");
+      const sentences = generatedText.split(/[.\d]+/).filter(Boolean); // Split based on periods and digits
+      console.log("sentences", sentences);
+      const emojiOnlyText = sentences
+        .map((sentence) => {
+          const emojiMatches = sentence.match(emojiRegex);
+          // Join with space to retain original punctuation marks
+          return emojiMatches ? emojiMatches.join("") : "";
+        })
+        .join(".\n"); // Join the sentences with a period and newline
+
+      // Set both emojiText and modifiedEmojiText to the emojified text
+      setEmojiText(emojiOnlyText + ".");
+      setModifiedEmojiText(emojiOnlyText);
+
+      const translationId =
+        Date.now() + (modifiedTranslation || translatedText).substring(0, 4);
+
+      navigate(`/translation/${translationId}`);
+    } catch (error) {
+      console.error("Error generating emojis:", error.message);
+      alert(`${error.message} Please try again.`);
+    } finally {
+      setLoading(false);
     }
-    const response = await axios.post("http://localhost:3001/generate-emoji", {
-      text: modifiedTranslation || translatedText,
-    });
-
-    console.log("reponse created", response.data.generated_text);
-
-    const emojiRegex =
-      /[\u{1F300}-\u{1F5FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}]/gu;
-    const emojiMatches = response.data.generated_text
-      .replace(/\n/g, "")
-      .match(emojiRegex);
-    const emojiOnlyText = emojiMatches ? emojiMatches.join("") : "";
-    setEmojiText(emojiOnlyText);
-    const translationId =
-      Date.now() + (modifiedTranslation || translatedText).substring(0, 4);
-
-    navigate(`/${translationId}`);
   };
 
   return (
@@ -122,7 +147,16 @@ const TranslatedText = () => {
           onClick={handleEmojiGen}
           type="button"
         >
-          Emojify
+          {loading ? (
+            <>
+              <span
+                className={`spinner-border spinner-border-sm `} // ${classes.arrowIcon} ${classes.toDownIcon}
+                aria-hidden="true"
+              ></span>
+            </>
+          ) : (
+            "Emojify"
+          )}
         </button>
       </div>
     </div>

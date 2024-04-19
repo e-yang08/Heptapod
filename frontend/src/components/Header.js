@@ -35,7 +35,13 @@ const Header = () => {
               is a multimodal translation service. Here are two ways to use us!
               <div>1: Original Text → English Text → Emojify </div>
               <div>2: English Text → Emojify </div>
-              🎉 Happy translation! 💫
+              🎉 Happy translation! 💫 <br />
+              <br />
+              <span className={classes.disclaimer}>
+                Note: AI-powered translation does not guarantee perfect results,
+                so please exercise caution and verify the translation through
+                alternative means when necessary.
+              </span>
             </div>
           </div>
         </div>
@@ -70,7 +76,7 @@ const Header = () => {
               type="button"
             >
               <div className={classes.draftLetterWrapper}>
-                <i className={`bi bi-info-square ${classes.draftIcon}`} />
+                <i className={`bi bi-info-square ${classes.infoIcon}`} />
               </div>
             </button>
           </div>
