@@ -114,3 +114,8 @@
 .SpaceHolder {
     height: 70px;
 }
+
+.disclaimer {
+    font-size: smaller;
+    color: var(--grey-35)
+}

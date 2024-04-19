@@ -3,6 +3,9 @@ require("dotenv").config();
 
 const generateEmojis = async (text) => {
   const apiKey = process.env.EDENAI_API_KEY;
+  const promptInput1 = process.env.PROMPT_INPUT1;
+  const promptInput2 = process.env.PROMPT_INPUT2 || "";
+  const promptInput3 = process.env.PROMPT_INPUT3 || "";
 
   const sentences = text.split(/[.!?？。！]+/);
   // Remove the last element if it's an empty string
@@ -21,9 +24,9 @@ const generateEmojis = async (text) => {
     inputText += "\n";
   });
 
-  const formattedText = `Generate ${
-    sentenceLen === 1 ? "a list" : `${sentenceLen} lists`
-  } of emojis that correspond to the following sentences:\n\n${inputText}\nThe emojis should match the subject and verb of each sentence. For example, if the sentence is 'I love dogs', I expect the corresponding answer to be 👨‍🦰❤️🐶. Please only include emojis and don't include alphabet-based sentences.`;
+  const formattedText = `${promptInput1}${
+    sentenceLen === 1 ? " a list" : ` ${sentenceLen} lists`
+  }${promptInput2}${inputText}${promptInput3}`;
 
   // Translate using deepl-node
   const options = {
