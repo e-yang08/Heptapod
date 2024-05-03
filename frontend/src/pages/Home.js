@@ -24,9 +24,8 @@ const Home = () => {
               ></button>
             </div>
             <div className={`modal-body text-start`}>
-              DeepL or Google Translate will detect the original text's
-              language. If there are any descrepancy, please contact our
-              support.
+              Google Translate will detect the original text's language. If
+              there are any descrepancy, please contact our support.
             </div>
           </div>
         </div>

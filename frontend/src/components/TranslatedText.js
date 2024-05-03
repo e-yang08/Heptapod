@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import classes from "./TranslatedText.module.css";
 import { useText } from "../textContext";
 
 const TranslatedText = () => {
   const navigate = useNavigate();
   const {
+    inputText,
+    sourceLang,
     translatedText,
     setEmojiText,
     setModifiedEmojiText,
@@ -42,6 +45,16 @@ const TranslatedText = () => {
       });
   };
 
+  const handleCollectData = async () => {
+    const response = await axios.post("http://localhost:3001/store-data", {
+      sourceLang: sourceLang,
+      inputText: inputText,
+      translatedText: modifiedTranslation || translatedText,
+    });
+
+    console.log("data stored", response.data);
+  };
+
   const countSentences = (text) => {
     // Split the text into sentences using period, exclamation mark, and question mark as delimiters
     const sentences = text.split(/[.!?？。！]+/).filter(Boolean);
@@ -72,14 +85,17 @@ const TranslatedText = () => {
           text: modifiedTranslation || translatedText,
         }
       );
-
-      console.log("response created", response.data.generated_text);
+      console.log("response created", response.data);
 
       const emojiRegex =
         /[\p{Extended_Pictographic}.?!, ](?:[\u{200D}\u{FE0F}][\p{Extended_Pictographic}])*/gu;
-      const generatedText = response.data.generated_text.replace(/\n/g, "");
-      const sentences = generatedText.split(/[.\d]+/).filter(Boolean); // Split based on periods and digits
+      const generatedText = response.data.replace(/\n/g, "");
+      const sentences = generatedText
+        .split(/[.\d]+/)
+        .map((sentence) => sentence.trim()) // remove blank
+        .filter(Boolean); // split based on periods and digits
       console.log("sentences", sentences);
+
       const emojiOnlyText = sentences
         .map((sentence) => {
           const emojiMatches = sentence.match(emojiRegex);
@@ -108,6 +124,7 @@ const TranslatedText = () => {
     <div>
       <textarea
         className={`form-control ${classes.translationTextarea}`}
+        rows={5}
         type="text"
         value={modifiedTranslation || translatedText}
         onChange={handleInputChange}
@@ -127,6 +144,15 @@ const TranslatedText = () => {
             onClick={handleCopyToClipboard}
           >
             <i className={`bi bi-copy ${classes.copyIcon}`} />
+          </button>
+          <button
+            className={`btn ${classes.iconWrapper}`}
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Store the text pair for better translation"
+            onClick={handleCollectData}
+          >
+            <i className={`bi bi-send ${classes.copyIcon}`} />
           </button>
           {showLangRevertButton && (
             <button

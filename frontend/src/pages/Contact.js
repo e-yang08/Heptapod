@@ -14,15 +14,8 @@ const Contact = () => {
           Share your thoughts/concerns with us by filling out this form below.
         </div>
       </div>
-      <div className={classes.formContainer}>
-        {/* <iframe
-          title="Contact Form"
-          src="https://example.com/your-form"
-          width="100%"
-          height="600px"
-          frameBorder="0"
-          scrolling="no"
-        ></iframe> */}
+      <div className={ classes.formContainer }>
+        {/* use contact form from the elfsight form */}
         <div
           class="elfsight-app-8d04d3ca-83b2-4ee1-b95e-59fa9724df2e"
           data-elfsight-app-lazy

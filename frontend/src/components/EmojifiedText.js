@@ -90,6 +90,7 @@ const EmojifiedText = () => {
         <textarea
           id="emojiResult"
           className={`form-control`}
+          rows={3} 
           type="text"
           value={modifiedEmojiText || emojiText}
           onChange={handleEmojiChange}
