@@ -21,7 +21,7 @@ const translateText = async (text) => {
       sourceLanguage: sourceLanguage,
     };
   } catch (error) {
-    console.error("Error translating text:", error);
+    console.error("Error translating texttt:", error);
     console.error("Stack trace:", error.stack);
     return "Translation error. Please try again.";
   }
