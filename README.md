@@ -12,7 +12,7 @@ Designed and coded by [Erela](https://linkedin.com/in/erela-yang-snow).
 ## Demo of the application
 Links: 
 - [Deployed website](https://heptapod.netlify.app/)
-- [Demo video](---)
+- [Demo video](https://youtu.be/lN2qxyEwniY)
 
 Below are some pictures from web application.
 
