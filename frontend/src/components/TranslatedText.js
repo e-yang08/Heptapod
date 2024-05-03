@@ -124,6 +124,7 @@ const TranslatedText = () => {
     <div>
       <textarea
         className={`form-control ${classes.translationTextarea}`}
+        rows={5}
         type="text"
         value={modifiedTranslation || translatedText}
         onChange={handleInputChange}

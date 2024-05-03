@@ -81,8 +81,9 @@ const OriginalText = () => {
     <div>
       <textarea
         className={`form-control`} //${classes.searchBar}
-        type="text"
+        rows={5}
         value={inputText}
+        type="text"
         onChange={handleInputChange}
         placeholder="Enter text to translate (Max 2 sentences)"
       />

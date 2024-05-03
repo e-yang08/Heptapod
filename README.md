@@ -1,7 +1,7 @@
 HEPTAPOD
 ===
 
-:tada: my college's final assignment - dedicated to Migration and Border tutorial
+:tada: my college's final assignment - dedicated to Migration and Border tutorial.
 
 "HEPTAPOD" is a multi-modal translation software, involving both text-to-text and text-to-emoji auto translation.
 The inspiration stems from the insufficient translation resources during the asylum-seeking process; I aim to overcome the communication gap through employing both text and emoji as the medium.
