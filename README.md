@@ -25,23 +25,19 @@ Links:
 
 Below are some pictures from web application.
 
-
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
 
     Home Page
 
-<img  src="https://hackmd.io/_uploads/HkxYqM-dnT.jpg" alt="Homepage1"/>
-    
-<span>You can check trending projects and topics.</span>
-<img src="https://hackmd.io/_uploads/HJgK5MWd3p.png" alt="Homepage2" />
+<img  src="https://hackmd.io/_uploads/Sk7Yv1zz0.png" alt="Homepage1"/>
+
 </div>
  
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
 
-    Log In Pop-up
+    Language Translation (Korean to English)
 
-<img  src="https://hackmd.io/_uploads/H1KqMb_2p.jpg" alt="photo_4"/>
-<img src="https://hackmd.io/_uploads/B1eYqMZdhT.jpg" alt="photo_5" />
+<img  src="https://hackmd.io/_uploads/Bymtv1GGA.png" alt="Korean to English Translation"/>
 
 
 </div>
@@ -49,57 +45,31 @@ Below are some pictures from web application.
     
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
 
-    Home Page after log in
+    Text to Emoji (aka Emojify)
 
-<img  src="https://hackmd.io/_uploads/SylK5Mbu3a.jpg" alt="after log in"/>
-<img src="https://hackmd.io/_uploads/rkZKcfZuhp.jpg" alt="hp profile popup" />
-    
+<img  src="https://hackmd.io/_uploads/HymtPJzzR.png" alt="Emojify process"/>
+
 
 </div>
         
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
     
-    Create a Project
+    Whcn clicking Information Icon on the top-right corner, you will see "how to use heptapod" modal
     
-<img src="https://hackmd.io/_uploads/ryY5Gb_n6.png" alt="create1"/>
+<img src="https://hackmd.io/_uploads/BkmYDkffR.png" alt="Heptapod Intro"/>
 
-
-<img src="https://hackmd.io/_uploads/Hy13hg_ha.png" alt="create2"/>
-<img src="https://hackmd.io/_uploads/Sy-KqMZuna.png" alt="create3"/>
-    
 
 </div>
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
     
-    Project Page
+    Whcn clicking Question Icon next to the detected language, you will see "Language Detection Disclaimer" modal
 
-<img src="https://hackmd.io/_uploads/Hyt5M-_h6.jpg" alt="photo_10"/>
+<img src="https://hackmd.io/_uploads/Sk7Kw1zMR.png" alt="Language Detection"/>
     
-   
-</div>
-
-    
-
 
 </div>
 
-<div style="margin: 20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-    
-    Donate a Project
- <img src="https://hackmd.io/_uploads/S1kh2l_np.png" alt="photo_10"/>
-
-<img src="https://hackmd.io/_uploads/rJ13ng_hT.png" alt="photo_7"/>
-    
-</div>
-
-<div style="margin: 20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-    
-    Project with $400 Donation
-
-<img src="https://hackmd.io/_uploads/BJY5zbOna.png" alt="donation"/>
-    
-</div>
 
 
 ## User story
