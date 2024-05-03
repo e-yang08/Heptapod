@@ -22,6 +22,7 @@ const translateText = async (text) => {
     };
   } catch (error) {
     console.error("Error translating text:", error);
+    console.error("Stack trace:", error.stack);
     return "Translation error. Please try again.";
   }
 };
