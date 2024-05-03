@@ -1,0 +1,3 @@
+{
+  "exampleText": "The emojis should match the subject and verb of each sentence. For example, if the sentence is 'I love dogs', I expect the corresponding answer to be 👨‍🦰❤️🐶. Please only include emojis and don't include alphabet-based sentences nor explanations."
+}

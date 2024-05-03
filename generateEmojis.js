@@ -1,12 +1,9 @@
-const axios = require("axios");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
+const { exampleText } = require("./prompt.json");
 
 const generateEmojis = async (text) => {
-  const apiKey = process.env.EDENAI_API_KEY;
-  const promptInput1 = process.env.PROMPT_INPUT1;
-  const promptInput2 = process.env.PROMPT_INPUT2 || "";
-  const promptInput3 = process.env.PROMPT_INPUT3 || "";
-
   const sentences = text.split(/[.!?？。！]+/);
   // Remove the last element if it's an empty string
   if (sentences[sentences.length - 1] === "") {
@@ -24,32 +21,19 @@ const generateEmojis = async (text) => {
     inputText += "\n";
   });
 
-  const formattedText = `${promptInput1}${
+  const prompt = `Generate${
     sentenceLen === 1 ? " a list" : ` ${sentenceLen} lists`
-  }${promptInput2}${inputText}${promptInput3}`;
+  }of emojis that correspond to the following sentences:\n\n${inputText}\n
+  ${exampleText}`;
 
-  // Translate using deepl-node
-  const options = {
-    method: "POST",
-    url: "https://api.edenai.run/v2/text/generation",
-    headers: {
-      accept: "application/json",
-      "content-type": "application/json",
-      authorization: `Bearer ${apiKey}`,
-    },
-    data: {
-      providers: "openai",
-      text: formattedText,
-      temperature: 0.2,
-      max_tokens: 200,
-      fallback_providers: "",
-    },
-  };
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const result = await model.generateContent(prompt);
 
   try {
-    const response = await axios.request(options);
-    const { openai } = response.data;
-    return openai;
+    const response = await result.response;
+    const text = response.text();
+    console.log(text);
+    return text;
   } catch (error) {
     console.error("Error generating emojis:", error.message);
     return "Translation error. Please try again.";

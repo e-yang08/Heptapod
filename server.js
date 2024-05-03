@@ -1,6 +1,7 @@
 const express = require("express");
-const translateText = require("./translateText");
+const translateText = require("./translateText"); // Import the function for translating texts
 const generateEmojis = require("./generateEmojis"); // Import the function for generating emojis
+const storeData = require("./storeData"); // Import the function for storing text data
 
 const cors = require("cors");
 const PORT = process.env.PORT || 3001;
@@ -24,6 +25,17 @@ app.post("/generate-emoji", async (req, res) => {
     const emojis = await generateEmojis(text); // Call the function to generate emojis
     console.log("emojis", emojis);
     res.json(emojis);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post("/store-data", async (req, res) => {
+  const { sourceLang, inputText, translatedText } = req.body;
+  try {
+    const result = await storeData(sourceLang, inputText, translatedText); // Call the function to generate emojis
+    console.log("storing", result);
+    res.json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

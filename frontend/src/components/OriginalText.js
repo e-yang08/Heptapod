@@ -2,7 +2,6 @@ import classes from "./OriginalText.module.css";
 import axios from "axios";
 import { useState } from "react";
 import { useText } from "../textContext";
-import deeplLanguageMapping from "../deeplLangMapping.json";
 import googleLangMapping from "../googleLangMapping.json";
 
 const OriginalText = () => {
@@ -68,14 +67,7 @@ const OriginalText = () => {
         setModifiedTranslation(response.data.translation.translation);
 
         const sourceLCode = response.data.translation.sourceLanguage;
-        const isDeepL = response.data.translation.deepL;
-
-        // map source language
-        if (isDeepL) {
-          setSourceLang(deeplLanguageMapping[sourceLCode]);
-        } else {
-          setSourceLang(googleLangMapping[sourceLCode]);
-        }
+        setSourceLang(googleLangMapping[sourceLCode]);
       }
     } catch (error) {
       console.error("Error translating text:", error.message);
